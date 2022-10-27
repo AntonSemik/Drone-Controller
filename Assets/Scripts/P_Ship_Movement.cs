@@ -7,9 +7,8 @@ using UnityEngine.InputSystem;
 public class P_Ship_Movement : MonoBehaviour
 {
     public bool _isEnabled = false;
-    [SerializeField] private int _id = 0;
 
-    [SerializeField] private Vector3 _forcesStrafeVerticalForward;
+    [SerializeField] private Vector3 _thrustStrafeVerticalForward;
     [SerializeField] private Vector3 _torquePitchYawRoll;
 
     private Vector3 _inputStrafeVerticalForward;
@@ -17,23 +16,31 @@ public class P_Ship_Movement : MonoBehaviour
 
     private Rigidbody _physBody;
 
-    private void Start()
+    private void Awake()
     {
         _physBody = GetComponent<Rigidbody>();
+
+        Ship_Engine.onEngineStateChanged += OnEngineChange;
     }
 
     private void FixedUpdate()
     {
         if (_isEnabled)
         {
-            ApplyForces();
+            ApplyThrust();
             ApplyTorque();
         }
     }
 
-    private void ApplyForces()
+    public void OnEngineChange(Vector3 _thrust, Vector3 _torque)
     {
-        _physBody.AddRelativeForce(new Vector3(_forcesStrafeVerticalForward.x * _inputStrafeVerticalForward.x, _forcesStrafeVerticalForward.y * _inputStrafeVerticalForward.y, _forcesStrafeVerticalForward.z * _inputStrafeVerticalForward.z));
+        _thrustStrafeVerticalForward += _thrust;
+        _torquePitchYawRoll += _torque;
+    }
+
+    private void ApplyThrust()
+    {
+        _physBody.AddRelativeForce(new Vector3(_thrustStrafeVerticalForward.x * _inputStrafeVerticalForward.x, _thrustStrafeVerticalForward.y * _inputStrafeVerticalForward.y, _thrustStrafeVerticalForward.z * _inputStrafeVerticalForward.z));
     }
 
     private void ApplyTorque()
@@ -41,7 +48,7 @@ public class P_Ship_Movement : MonoBehaviour
         _physBody.AddRelativeTorque(new Vector3(_torquePitchYawRoll.x * _inputPitchYawRoll.x, _torquePitchYawRoll.y * -_inputPitchYawRoll.y, _torquePitchYawRoll.z * _inputPitchYawRoll.z));
     }
 
-    public void OnForceInput(InputAction.CallbackContext _context)
+    public void OnThrustInput(InputAction.CallbackContext _context)
     {
         _inputStrafeVerticalForward = _context.ReadValue<Vector3>();
     }
@@ -49,5 +56,10 @@ public class P_Ship_Movement : MonoBehaviour
     public void OnTorqueInput(InputAction.CallbackContext _context)
     {
         _inputPitchYawRoll = _context.ReadValue<Vector3>();
+    }
+
+    private void OnDestroy()
+    {
+        Ship_Engine.onEngineStateChanged -= OnEngineChange;
     }
 }

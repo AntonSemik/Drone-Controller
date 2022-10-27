@@ -6,7 +6,7 @@
             "id": "2e40912b-c623-4aec-ac97-9e62e57667bf",
             "actions": [
                 {
-                    "name": "AxisMovement",
+                    "name": "Thrust",
                     "type": "Value",
                     "id": "2f399cf2-07df-480a-9ab8-a22e4a706053",
                     "expectedControlType": "Vector3",
@@ -15,7 +15,7 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "AxisRotating",
+                    "name": "Rotation",
                     "type": "Value",
                     "id": "8ee4d74d-b56d-437c-b985-beb2701680a7",
                     "expectedControlType": "Vector3",
@@ -32,7 +32,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "AxisMovement",
+                    "action": "Thrust",
                     "isComposite": true,
                     "isPartOfComposite": false
                 },
@@ -43,7 +43,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "AxisMovement",
+                    "action": "Thrust",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -54,7 +54,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "AxisMovement",
+                    "action": "Thrust",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -65,7 +65,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "AxisMovement",
+                    "action": "Thrust",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -76,7 +76,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "AxisMovement",
+                    "action": "Thrust",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -87,7 +87,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "AxisMovement",
+                    "action": "Thrust",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -98,7 +98,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "AxisMovement",
+                    "action": "Thrust",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -109,7 +109,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "AxisRotating",
+                    "action": "Rotation",
                     "isComposite": true,
                     "isPartOfComposite": false
                 },
@@ -120,7 +120,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "AxisRotating",
+                    "action": "Rotation",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -131,7 +131,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "AxisRotating",
+                    "action": "Rotation",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -142,7 +142,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "AxisRotating",
+                    "action": "Rotation",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -153,7 +153,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "AxisRotating",
+                    "action": "Rotation",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -164,7 +164,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "AxisRotating",
+                    "action": "Rotation",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -175,7 +175,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "AxisRotating",
+                    "action": "Rotation",
                     "isComposite": false,
                     "isPartOfComposite": true
                 }
