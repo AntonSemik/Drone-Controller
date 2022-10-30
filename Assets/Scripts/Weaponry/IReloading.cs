@@ -2,7 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IDamageable
+public interface INeedReload
 {
-    public void TakeDamage(float _damage);
+    public void Reload();
+
 }

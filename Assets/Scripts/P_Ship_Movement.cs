@@ -45,7 +45,7 @@ public class P_Ship_Movement : MonoBehaviour
 
     private void ApplyTorque()
     {
-        _physBody.AddRelativeTorque(new Vector3(_torquePitchYawRoll.x * _inputPitchYawRoll.x, _torquePitchYawRoll.y * -_inputPitchYawRoll.y, _torquePitchYawRoll.z * _inputPitchYawRoll.z));
+        _physBody.AddRelativeTorque(new Vector3(_torquePitchYawRoll.x * _inputPitchYawRoll.x, _torquePitchYawRoll.y * -_inputPitchYawRoll.y, - _torquePitchYawRoll.z * _inputPitchYawRoll.z));
     }
 
     public void OnThrustInput(InputAction.CallbackContext _context)

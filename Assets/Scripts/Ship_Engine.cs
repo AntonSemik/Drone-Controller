@@ -23,7 +23,7 @@ public class Ship_Engine : MonoBehaviour, IDamageable
         onEngineStateChanged?.Invoke(_thrustStrafeVerticalForward, _rotationPitchYawRoll);
     }
 
-    public void TakeDamage(int _damage)
+    public void TakeDamage(float _damage)
     {
         _durabilityCurrent -= _damage;
         Mathf.Clamp(_durabilityCurrent, 0, _durabilityMax);
