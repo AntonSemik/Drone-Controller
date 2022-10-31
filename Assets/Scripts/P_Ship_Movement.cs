@@ -21,6 +21,8 @@ public class P_Ship_Movement : MonoBehaviour
         _physBody = GetComponent<Rigidbody>();
 
         Ship_Engine.onEngineStateChanged += OnEngineChange;
+
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     private void FixedUpdate()
