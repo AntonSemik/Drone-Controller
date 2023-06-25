@@ -6,19 +6,19 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(Rigidbody))]
 public class P_Ship_Movement : MonoBehaviour
 {
-    public bool _isEnabled = false;
+    public bool isEnabled = false;
 
-    [SerializeField] private Vector3 _thrustStrafeVerticalForward;
-    [SerializeField] private Vector3 _torquePitchYawRoll;
+    [SerializeField] private Vector3 thrustStrafeVerticalForward;
+    [SerializeField] private Vector3 torquePitchYawRoll;
 
-    private Vector3 _inputStrafeVerticalForward;
-    private Vector3 _inputPitchYawRoll;
+    private Vector3 inputStrafeVerticalForward;
+    private Vector3 inputPitchYawRoll;
 
-    private Rigidbody _physBody;
+    private Rigidbody RB;
 
     private void Awake()
     {
-        _physBody = GetComponent<Rigidbody>();
+        RB = GetComponent<Rigidbody>();
 
         Ship_Engine.onEngineStateChanged += OnEngineChange;
 
@@ -27,37 +27,37 @@ public class P_Ship_Movement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (_isEnabled)
+        if (isEnabled)
         {
             ApplyThrust();
             ApplyTorque();
         }
     }
 
-    public void OnEngineChange(Vector3 _thrust, Vector3 _torque)
+    public void OnEngineChange(Vector3 thrust, Vector3 torque)
     {
-        _thrustStrafeVerticalForward += _thrust;
-        _torquePitchYawRoll += _torque;
+        thrustStrafeVerticalForward += thrust;
+        torquePitchYawRoll += torque;
     }
 
     private void ApplyThrust()
     {
-        _physBody.AddRelativeForce(new Vector3(_thrustStrafeVerticalForward.x * _inputStrafeVerticalForward.x, _thrustStrafeVerticalForward.y * _inputStrafeVerticalForward.y, _thrustStrafeVerticalForward.z * _inputStrafeVerticalForward.z));
+        RB.AddRelativeForce(new Vector3(thrustStrafeVerticalForward.x * inputStrafeVerticalForward.x, thrustStrafeVerticalForward.y * inputStrafeVerticalForward.y, thrustStrafeVerticalForward.z * inputStrafeVerticalForward.z));
     }
 
     private void ApplyTorque()
     {
-        _physBody.AddRelativeTorque(new Vector3(_torquePitchYawRoll.x * _inputPitchYawRoll.x, _torquePitchYawRoll.y * -_inputPitchYawRoll.y, - _torquePitchYawRoll.z * _inputPitchYawRoll.z));
+        RB.AddRelativeTorque(new Vector3(torquePitchYawRoll.x * inputPitchYawRoll.x, torquePitchYawRoll.y * -inputPitchYawRoll.y, - torquePitchYawRoll.z * inputPitchYawRoll.z));
     }
 
-    public void OnThrustInput(InputAction.CallbackContext _context)
+    public void OnThrustInput(InputAction.CallbackContext context)
     {
-        _inputStrafeVerticalForward = _context.ReadValue<Vector3>();
+        inputStrafeVerticalForward = context.ReadValue<Vector3>();
     }
 
     public void OnTorqueInput(InputAction.CallbackContext _context)
     {
-        _inputPitchYawRoll = _context.ReadValue<Vector3>();
+        inputPitchYawRoll = _context.ReadValue<Vector3>();
     }
 
     private void OnDestroy()

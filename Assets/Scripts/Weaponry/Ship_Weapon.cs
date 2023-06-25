@@ -5,10 +5,10 @@ using UnityEngine.InputSystem;
 
 public class Ship_Weapon : MonoBehaviour
 {
-    protected float _isShooting;
+    protected float isShooting;
 
-    public void OnShoot(InputAction.CallbackContext _context)
+    public void OnShoot(InputAction.CallbackContext context)
     {
-        _isShooting = _context.ReadValue<float>();
+        isShooting = context.ReadValue<float>();
     }
 }

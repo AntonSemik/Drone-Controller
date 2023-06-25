@@ -4,19 +4,19 @@ using UnityEngine;
 
 public class SpawnOnDisable : MonoBehaviour
 {
-    [SerializeField] GameObject _objectToSpawn;
+    [SerializeField] GameObject objectToSpawn;
 
     private void Awake()
     {
-        _objectToSpawn = Instantiate(_objectToSpawn, transform.position, Quaternion.identity);
-        _objectToSpawn.SetActive(false);
+        objectToSpawn = Instantiate(objectToSpawn, transform.position, Quaternion.identity);
+        objectToSpawn.SetActive(false);
     }
 
     private void OnDisable()
     {
-        _objectToSpawn.transform.position = transform.position;
-        _objectToSpawn.transform.rotation = transform.rotation;
+        objectToSpawn.transform.position = transform.position;
+        objectToSpawn.transform.rotation = transform.rotation;
 
-        _objectToSpawn.SetActive(true);
+        objectToSpawn.SetActive(true);
     }
 }

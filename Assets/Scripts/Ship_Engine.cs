@@ -4,33 +4,33 @@ using UnityEngine;
 
 public class Ship_Engine : MonoBehaviour, IDamageable
 {
-    [SerializeField] private float _durabilityMax;
-    private float _durabilityCurrent;
+    [SerializeField] private float durabilityMax;
+    private float durabilityCurrent;
 
-    [SerializeField] private AnimationCurve _powerCurve;
-    private float _powerLevel = 1; private float _previousLevel = 0;
+    [SerializeField] private AnimationCurve powerCurve;
+    private float powerLevel = 1; private float previousLevel = 0;
 
-    [SerializeField] private Vector3 _thrustStrafeVerticalForward;
-    [SerializeField] private Vector3 _rotationPitchYawRoll;
+    [SerializeField] private Vector3 thrustStrafeVerticalForward;
+    [SerializeField] private Vector3 rotationPitchYawRoll;
 
     public delegate void OnEngineStateChanged(Vector3 _thrust, Vector3 _rotation);
     public static OnEngineStateChanged onEngineStateChanged;
 
     public void Start()
     {
-        _durabilityCurrent = _durabilityMax;
+        durabilityCurrent = durabilityMax;
 
-        onEngineStateChanged?.Invoke(_thrustStrafeVerticalForward, _rotationPitchYawRoll);
+        onEngineStateChanged?.Invoke(thrustStrafeVerticalForward, rotationPitchYawRoll);
     }
 
-    public void TakeDamage(float _damage)
+    public void TakeDamage(float damage)
     {
-        _durabilityCurrent -= _damage;
-        Mathf.Clamp(_durabilityCurrent, 0, _durabilityMax);
+        durabilityCurrent -= damage;
+        Mathf.Clamp(durabilityCurrent, 0, durabilityMax);
 
-        _previousLevel = _powerLevel;
-        _powerLevel = _powerCurve.Evaluate(_durabilityCurrent / _durabilityMax);
+        previousLevel = powerLevel;
+        powerLevel = powerCurve.Evaluate(durabilityCurrent / durabilityMax);
 
-        onEngineStateChanged?.Invoke(_thrustStrafeVerticalForward * (_powerLevel - _previousLevel), _rotationPitchYawRoll * (_powerLevel - _previousLevel));
+        onEngineStateChanged?.Invoke(thrustStrafeVerticalForward * (powerLevel - previousLevel), rotationPitchYawRoll * (powerLevel - previousLevel));
     }
 }

@@ -4,20 +4,20 @@ using UnityEngine;
 
 public class PlasmaCannon : Ship_Weapon, IUsePool, INeedReload
 {
-    public Transform _gunPoint;
+    public Transform gunPoint;
 
-    public GameObject _projectile;
-    bool _isLoaded;
-
-
-    public float _reloadTime;
-    float _reloadTimer;
-
-    [SerializeField] int _poolSize;
-    Queue<GameObject> _poolQueue = new Queue<GameObject>();
+    public GameObject projectilePrefab;
+    bool isLoaded;
 
 
-    GameObject _tempGO;
+    public float reloadTime;
+    float reloadTimer;
+
+    [SerializeField] int poolSize;
+    Queue<GameObject> poolQueue = new Queue<GameObject>();
+
+
+    GameObject tempObj;
 
     void Start()
     {
@@ -26,20 +26,20 @@ public class PlasmaCannon : Ship_Weapon, IUsePool, INeedReload
 
     public void Update()
     {
-        if (!_isLoaded)
+        if (!isLoaded)
         {
-            _reloadTimer -= Time.deltaTime;
-            if (_reloadTimer <= 0) _isLoaded = true;
+            reloadTimer -= Time.deltaTime;
+            if (reloadTimer <= 0) isLoaded = true;
         }
 
-        if(_isShooting >= 0.1f && _isLoaded)
+        if(isShooting >= 0.1f && isLoaded)
         {
-            _tempGO = GetObjectFromPool();
+            tempObj = GetObjectFromPool();
 
-            _tempGO.transform.position = _gunPoint.position;
-            _tempGO.transform.rotation = _gunPoint.rotation;
+            tempObj.transform.position = gunPoint.position;
+            tempObj.transform.rotation = gunPoint.rotation;
 
-            _tempGO.SetActive(true);
+            tempObj.SetActive(true);
 
             Reload();
         }
@@ -47,26 +47,26 @@ public class PlasmaCannon : Ship_Weapon, IUsePool, INeedReload
 
     public GameObject GetObjectFromPool()
     {
-        _tempGO = _poolQueue.Dequeue();
-        _poolQueue.Enqueue(_tempGO);
+        tempObj = poolQueue.Dequeue();
+        poolQueue.Enqueue(tempObj);
 
-        return _tempGO;
+        return tempObj;
     }
 
     public void InitialisePool()
     {
-        for (int i = 0; i < _poolSize; i++)
+        for (int i = 0; i < poolSize; i++)
         {
-            _tempGO = Instantiate(_projectile, transform.position, Quaternion.identity);
+            tempObj = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
 
-            _poolQueue.Enqueue(_tempGO);
-            _tempGO.SetActive(false);
+            poolQueue.Enqueue(tempObj);
+            tempObj.SetActive(false);
         }
     }
 
     public void Reload()
     {
-        _isLoaded = false;
-        _reloadTimer = _reloadTime;
+        isLoaded = false;
+        reloadTimer = reloadTime;
     }
 }

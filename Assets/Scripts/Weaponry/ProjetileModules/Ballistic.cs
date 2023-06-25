@@ -5,24 +5,24 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class Ballistic : MonoBehaviour
 {
-    [SerializeField] float _startVelocity;
-    [SerializeField] float _acceleration;
-    [SerializeField] float _gravity;
+    [SerializeField] float startVelocity;
+    [SerializeField] float acceleration;
+    [SerializeField] float gravity;
 
-    Rigidbody _physBody;
+    Rigidbody RB;
 
     private void Awake()
     {
-        _physBody = GetComponent<Rigidbody>();
+        RB = GetComponent<Rigidbody>();
     }
 
     private void OnEnable()
     {
-        _physBody.velocity = transform.forward * _startVelocity;
+        RB.velocity = transform.forward * startVelocity;
     }
 
     private void FixedUpdate()
     {
-        _physBody.velocity += (transform.forward * _acceleration + Vector3.up * _gravity) * Time.deltaTime;
+        RB.velocity += (transform.forward * acceleration + Vector3.up * gravity) * Time.deltaTime;
     }
 }

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DisableOnHit : MonoBehaviour
+public class DisableOnTouch : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
