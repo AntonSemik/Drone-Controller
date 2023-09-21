@@ -1,3 +1,3 @@
-# P_Anomaly
+# Drone controller
 
-Physics based drone controller // Small study
+Physics based drone controller with "damageable" // Small study project
