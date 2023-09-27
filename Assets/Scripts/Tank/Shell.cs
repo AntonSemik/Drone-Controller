@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-public class MortarShell : MonoBehaviour
+public class Shell : MonoBehaviour
 {
     public float blastRange;
     public int rayCount;
@@ -54,8 +54,8 @@ public class MortarShell : MonoBehaviour
 
         if (Physics.Raycast(originPoint, dir, out hit, fragmentDispersionRange, whatToHit))
         {
-            MortarTarget mortarTarget;
-            if (hit.collider.TryGetComponent<MortarTarget>(out mortarTarget))
+            Damageable mortarTarget;
+            if (hit.collider.TryGetComponent<Damageable>(out mortarTarget))
             {
                 mortarTarget.GetHit();
             }
@@ -76,8 +76,8 @@ public class MortarShell : MonoBehaviour
 
         foreach (Collider collider in hitObjects)
         {
-            MortarTarget mortarTarget;
-            if (collider.TryGetComponent<MortarTarget>(out mortarTarget))
+            Damageable mortarTarget;
+            if (collider.TryGetComponent<Damageable>(out mortarTarget))
             {
                 mortarTarget.Invoke("GetHit", (collider.transform.position - originPoint).magnitude/330);
             }

@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Mortar : MonoBehaviour
+public class Cannon : MonoBehaviour
 {
     public bool launch = false;
     public Transform launchPoint;
     public float launchVelocity = 20f;
-    public MortarShell shell;
+    public Shell shell;
     public float blastRange;
     public int rayCount;
     public float fragmentDispersionRange;
@@ -24,7 +24,7 @@ public class Mortar : MonoBehaviour
 
     void Launch()
     {
-        MortarShell tempShell = Instantiate(shell, launchPoint.position, launchPoint.rotation);
+        Shell tempShell = Instantiate(shell, launchPoint.position, launchPoint.rotation);
         tempShell.rb.velocity = (tempShell.transform.up).normalized * launchVelocity;
         //tempShell.rb.velocity = (tempShell.transform.up + Random.insideUnitSphere * 0.01f).normalized * launchVelocity;
         tempShell.rayCount = rayCount;

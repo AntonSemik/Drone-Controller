@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MortarTarget : MonoBehaviour
+public class Damageable : MonoBehaviour
 {
     public Renderer targetRenderer;
 
